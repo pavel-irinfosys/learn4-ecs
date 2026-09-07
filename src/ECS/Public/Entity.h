@@ -14,13 +14,21 @@ namespace ECS
     struct Entity
     {
         EntityID    id         = INVALID_ENTITY_ID;
-        Generateion generation = 0;
+        Generation  generation = 0;
 
         bool operator==(const Entity& other) const
         {
             return id == other.id && generation == other.generation;
         }
+        
+        bool operator!=(const Entity& other) const
+        {
+            return !(*this == other);
+        }
 
         bool IsValid() const { return id != INVALID_ENTITY_ID; }
+
     };
+
+    constexpr Entity INVALID_ENTITY {};
 }
