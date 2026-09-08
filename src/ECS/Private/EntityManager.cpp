@@ -1,5 +1,17 @@
 /**
- * 
+ * EntityManager: owns the lifetime of every Entity in the ECS.
+ *
+ * Responsibilities:
+ *   - Create()   allocates a new Entity, reusing a recycled Id when possible.
+ *   - Destroy()  invalidates an Entity by bumping its generation, then
+ *                recycles the Id for future reuse.
+ *   - IsAlive()  checks whether a given Entity handle still matches the
+ *                current generation stored for its Id.
+ *
+ * Ids are never freed from memory; they are recycled. Each Id has an
+ * associated generation counter that increases every time the Id is
+ * destroyed and reused, which is what allows stale Entity handles to be
+ * detected after their Id has been reassigned to a new entity.
  */
 
 #include "Public/Types.h"
