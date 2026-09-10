@@ -1,5 +1,7 @@
 /**
+ * EntityManager.h
  *
+ * Manages the creation, destruction, and lifecycle of entities in the ECS.
  */
 #pragma once
 
