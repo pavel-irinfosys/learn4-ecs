@@ -23,17 +23,21 @@ namespace ECS
 {
     Entity EntityManager::Create()
     {
-        if (m_freeIDs.empty())
+        // FIX: this must check for a free id being AVAILABLE (non-empty),
+        // not empty. The previous version called .back()/.pop_back() on an
+        // empty vector when no free id existed (undefined behavior), and
+        // skipped recycling entirely whenever a free id *did* exist.
+        if (!m_freeIDs.empty())
         {
             EntityID id = m_freeIDs.back();
             m_freeIDs.pop_back();
-
+ 
             return Entity { id, m_generations[id] };
         }
-
+ 
         EntityID id = static_cast<EntityID>(m_generations.size());
         m_generations.push_back(0);
-
+ 
         return Entity { id, 0 };
     }
 
@@ -43,7 +47,7 @@ namespace ECS
         {
             return;
         }
-
+ 
         ++m_generations[entity.id];
         m_freeIDs.push_back(entity.id);
     }
@@ -55,12 +59,12 @@ namespace ECS
         {
             return false;
         }
-
+ 
         if (entity.id >= m_generations.size())
         {
             return false;
         }
-
+ 
         return m_generations[entity.id] == entity.generation;
     }
 }
