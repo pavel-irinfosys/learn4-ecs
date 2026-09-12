@@ -5,8 +5,8 @@
  */
 #pragma once
 
-#include "Public/Types.h"
-#include "Public/Entity.h"
+#include "Types.h"
+#include "Entity.h"
 
 #include <vector>
 
@@ -15,7 +15,13 @@ namespace ECS
     class EntityManager
     {
     public:
-        EntityManager() = default;
+        EntityManager()
+        {
+            // Slot 0 is reserved for INVALID_ENTITY_ID (0).
+            // No real entity ever receives id 0, so the first entity created
+            // gets id 1, and m_generations[0] stays a permanent dummy slot.
+            m_generations.push_back(0);
+        }   
 
         Entity Create();
         void Destroy(Entity entity);

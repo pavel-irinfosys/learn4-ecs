@@ -14,8 +14,8 @@
  * detected after their Id has been reassigned to a new entity.
  */
 
-#include "Public/Types.h"
-#include "Public/Entity.h"
+#include "Types.h"
+#include "Entity.h"
 
 #include "EntityManager.h"
 

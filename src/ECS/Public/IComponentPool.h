@@ -7,7 +7,7 @@
  */
 #pragma once
 
-#include "Public/Types.h"
+#include "Types.h"
 
 namespace ECS
 {

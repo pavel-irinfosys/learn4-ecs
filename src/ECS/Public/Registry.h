@@ -35,10 +35,10 @@
 
 #pragma once
 
-#include "Public/Types.h"
-#include "Public/Entity.h"
-#include "Public/EntityManager.h"
-#include "Public/ComponentManager.h"
+#include "Types.h"
+#include "Entity.h"
+#include "EntityManager.h"
+#include "ComponentManager.h"
 
 #include <vector>
 #include <algorithm>

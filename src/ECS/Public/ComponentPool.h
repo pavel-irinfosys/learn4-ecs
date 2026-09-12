@@ -16,8 +16,8 @@
 
 #pragma once
 
-#include "Public/Types.h"
-#include "Public/IComponentPool.h"
+#include "Types.h"
+#include "IComponentPool.h"
 
 #include <unordered_map>
 #include <cassert>

@@ -9,6 +9,10 @@ find_package(SDL3 REQUIRED CONFIG)
 
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/ECS/Private/EntityManager.cpp
+    src/ECS/Private/ComponentManager.cpp
+
+
 )
 
 # ECS/Public holds headers included from anywhere in the project.

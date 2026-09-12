@@ -34,11 +34,11 @@
 
 #pragma once
 
-#include "Public/Types.h"
-#include "Public/Entity.h"
-#include "Public/IComponentPool.h"
-#include "Public/ComponentPool.h"
-#include "Public/ComponentType.h"
+#include "Types.h"
+#include "Entity.h"
+#include "IComponentPool.h"
+#include "ComponentPool.h"
+#include "ComponentType.h"
 
 #include <unordered_map>
 #include <memory>

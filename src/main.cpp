@@ -4,21 +4,37 @@
 #include <SDL3/SDL.h>
 #include <cstdio>
 
+#include "Types.h"
+#include "Registry.h"
+#include "Components.h"
+
+
+
 int main(int argc, char* argv[])
 {
     (void)argc;
     (void)argv;
-
-    if (!SDL_Init(SDL_INIT_VIDEO))
+    
+    ECS::Registry registry;   
+    ECS::Entity a = registry.CreateEntity();
+    registry.AddComponent(a, ECS::PositionComponent{ 10.0f, 20.0f });
+    registry.AddComponent(a, ECS::HealthComponent{ 100.0f });
+    
+    printf("Created entity with ID: %u, Generation: %u\n", a.id, a.generation);
+    if (auto* pos = registry.GetComponent<ECS::PositionComponent>(a))
     {
-        std::printf("SDL_Init failed: %s\n", SDL_GetError());
-        return 1;
+        printf("Position: (%f, %f)\n", pos->x, pos->y);
     }
 
-    std::printf("SDL3 initialized successfully.\n");
-    std::printf("SDL3 compiled version: %d.%d.%d\n",
-                SDL_MAJOR_VERSION, SDL_MINOR_VERSION, SDL_MICRO_VERSION);
+    if (auto* health = registry.GetComponent<ECS::HealthComponent>(a))
+    {
+        printf("Health: %f\n", health->health);
+    }
 
-    SDL_Quit();
+    if (auto* vel = registry.GetComponent<ECS::VelocityComponent>(a))
+    {
+        printf("Velocity: (%f, %f)\n", vel->x, vel->y);
+    }
+
     return 0;
 }
